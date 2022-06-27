@@ -1,45 +1,24 @@
 import * as React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import {StyleSheet } from 'react-native';
+import { NavigationContainer,DefaultTheme } from '@react-navigation/native';
+import MyDrawer from './Navigation/MyDrawer';
 
-function Home() {
-  return (
-    <View style={styles.container}>
-      <Text>Home Screen</Text>
-    </View>
-  );
-}
-
-function About() {
-  return (
-    <View style={styles.container}>
-      <Text>About Screen</Text>
-    </View>
-  );
-}
-
-const Drawer = createDrawerNavigator();
-
-function MyDrawer() {
-  return (
-    <Drawer.Navigator
-      initialRouteName='Home'
-    >
-      <Drawer.Screen name="Home" component={Home} />
-      <Drawer.Screen name="About" component={About} />
-    </Drawer.Navigator>
-  );
-}
-
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: 'rgb(250, 35, 25)',
+  },
+};
 export default function App() {
   return (
-    <NavigationContainer>
-      <MyDrawer />
-    </NavigationContainer>
+    <>
+      <NavigationContainer theme={MyTheme}>
+        <MyDrawer  MyDrawer={MyDrawer}/>
+      </NavigationContainer>
+    </>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
